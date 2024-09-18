@@ -1,0 +1,46 @@
+<div style="display: flex; flex-direction: column;  
+width: 520px; 
+    margin: 20px; padding: 20px; 
+    background-color: #f9f9f9; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; font-family: Arial, sans-serif;">
+
+    <h2 style="margin-bottom: 20px; color: #333;">เพิ่มสถานที่ท่องเทียวใหม่</h2>
+
+    <label style="margin-bottom: 5px;">ชื่อสถานที่</label>
+    <input type="text" name="name" #name value="{{selectedLandmark.name}}" 
+        style="padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; 
+        border-radius: 4px;">
+
+    <label style="margin-bottom: 5px;">รายละเอียดสถานที่</label>
+    <textarea name="detail" cols="30" rows="10" #detail 
+        style="padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; 
+        border-radius: 4px;">{{selectedLandmark.detail}}</textarea>
+
+    <label style="margin-bottom: 5px;">URL รูปภาพสถานที่</label>
+    <input type="text" name="url" #url value="{{selectedLandmark.url}}" 
+        style="padding: 8px; margin-bottom: 15px; border: 1px solid #ccc; 
+        border-radius: 4px;">
+
+    <label style="margin-bottom: 5px;">เลือกประเทศ</label>
+    <select name="country" #country 
+        style="padding: 8px; margin-bottom: 20px; border: 1px solid #ccc; 
+        border-radius: 4px;">
+        <option *ngFor="let country of countries" value="{{country.idx}}">
+            {{country.name}}
+        </option>
+    </select>
+
+    <div style="display: flex; justify-content: space-between;">
+        <button (click)="save(name.value,detail.value,url.value,+country.value,selectedLandmark.idx)" 
+            style="background-color: #4CAF50; color: white; padding: 10px 20px; 
+            border: none; border-radius: 4px; cursor: pointer;">
+            บันทึกข้อมูล
+        </button>
+        <button (click)="close()" 
+            style="background-color: #f44336; color: white; padding: 10px 20px; 
+            border: none; border-radius: 4px; cursor: pointer;">
+            ปิด
+        </button>
+    </div>
+</div>

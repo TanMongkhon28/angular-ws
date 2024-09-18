@@ -1,0 +1,39 @@
+<div style="display: flex; flex-direction: column; gap: 15px; padding: 20px; 
+            height: auto; width: 500px; background-color: #f9f9f9; border-radius: 10px; 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); margin: 20px auto;">
+    <p style="font-size: 1.5rem; font-weight: bold; color: #333; text-align: center;">
+        เพิ่มสถานที่ท่องเที่ยวใหม่
+    </p>
+    
+    <label style="font-size: 1.1rem; color: #333;">ชื่อสถานที่</label>
+    <input type="text" name="name" #name 
+           style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+    <label style="font-size: 1.1rem; color: #333;">รายละเอียดสถานที่</label>
+    <textarea name="detail" cols="30" rows="5" #detail 
+              style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+
+    <label style="font-size: 1.1rem; color: #333;">URL รูปภาพสถานที่</label>
+    <input type="text" name="url" #url 
+           style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+    <label style="font-size: 1.1rem; color: #333;">เลือกประเทศ</label>
+    <select name="country" #country 
+            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        <option *ngFor="let country of countries" value="{{country.idx}}">
+            {{country.name}}
+        </option>
+    </select>
+
+    <button (click)="addNew(name.value, detail.value, url.value, +country.value)" 
+            style="padding: 10px; background-color: #1868c4; color: white; 
+                   border: none; border-radius: 5px; cursor: pointer;">
+        เพิ่มข้อมูล
+    </button>
+    
+    <button (click)="close()" 
+            style="padding: 10px; background-color: #f44336; color: white; 
+                   border: none; border-radius: 5px; cursor: pointer;">
+        ปิด
+    </button>
+</div>

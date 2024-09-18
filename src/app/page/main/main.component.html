@@ -1,0 +1,53 @@
+<div style="display: flex; flex-direction: column; width: 80%; margin: 20px auto; font-family: 'Roboto', sans-serif;">
+
+    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <button (click)="findAll()" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s;">
+            ทุกประเทศ
+        </button>
+        <div style="display: flex; gap: 10px;">
+            <button *ngFor="let country of this.countries" 
+            (click)="findByCountry(country.name)"
+            style="padding: 10px 20px; background-color: #17A2B8; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s;">
+            {{country.name}}</button>
+        </div>
+        <button (click)="addNew()" style="padding: 10px 20px; background-color: #28A745; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s;">
+            เพิ่มข้อมูลใหม่
+        </button>
+    </div>
+  
+    <div style="display: flex; gap: 20px;">
+        <div style="width: 480px; border: 1px solid #ccc; border-radius: 10px; padding: 10px; background-color: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);">
+            <mat-selection-list #landmark [multiple]="false" (selectionChange)="show($event.options[0])"
+            style="max-height: 100vh; overflow: auto;">
+                <mat-list-option *ngFor="let landmark of this.landmarks" [value]="landmark"
+                style="width: 100%; height: auto; display: flex; align-items: center; padding: 10px; margin-bottom: 10px; border-bottom: 1px solid #eee; transition: background-color 0.3s;">
+                    <div style="display: flex; align-items: center;">
+                        <img src="{{landmark.url}}" alt="{{landmark.name}}" style="height: 150px; width: 200px; object-fit: cover; border-radius: 10px; margin-right: 10px;">
+                        <div>
+                            <span style="font-size: 16px; font-weight: bold; color: #333;">{{landmark.name}}</span>
+                        </div>
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </div>
+  
+        <div style="flex: 1; padding: 20px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);">
+            <div *ngIf="selectedLandmark != undefined" style="display: flex; flex-direction: column; gap: 15px;">
+                <img src="{{this.selectedLandmark.url}}" alt="{{selectedLandmark.name}}" style="width: 100%; max-width: 500px; object-fit: cover; border-radius: 10px; align-self: center;">
+                <span style="font-size: 24px; font-weight: bold; color: #333;">{{this.selectedLandmark.name}}</span>
+                <span style="color: #6c757d;">{{this.selectedLandmark.country}}</span>
+                <p style="line-height: 1.6; color: #555;">{{this.selectedLandmark.detail}}</p>
+  
+                <div style="display: flex; gap: 10px;">
+                    <button (click)="edit()" style="padding: 10px 20px; background-color: #dac400; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        แก้ไข
+                    </button>
+                    <button (click)="delete(this.selectedLandmark.idx)" style="padding: 10px 20px; background-color: #3591dc; color: white; border: none; border-radius: 8px; cursor: pointer; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        ลบ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
